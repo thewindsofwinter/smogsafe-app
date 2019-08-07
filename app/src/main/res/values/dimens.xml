@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_heading_size">30sp</dimen>
+    <dimen name="text_aqi_size">24sp</dimen>
+    <dimen name="text_footnote_size">12sp</dimen>
+</resources>

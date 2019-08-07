@@ -2,8 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-            app:startDestination="@id/appWelcomeFragment">
-
-    <fragment android:id="@+id/appWelcomeFragment" android:name="edu.imsa.andyt.smogsafe.fragments.AppWelcomeFragment"
-              android:label="fragment_app_welcome" tools:layout="@layout/fragment_app_welcome"/>
+            app:startDestination="@id/locationListFragment">
+    <fragment android:id="@+id/locationListFragment"
+              android:name="edu.imsa.andyt.smogsafe.fragments.LocationListFragment"
+              android:label="LocationListFragment">
+        <action android:id="@+id/action_locationListFragment_to_locationDetailFragment"
+                app:destination="@id/locationDetailFragment"/>
+    </fragment>
+    <fragment android:id="@+id/locationDetailFragment"
+              android:name="edu.imsa.andyt.smogsafe.fragments.LocationDetailFragment"
+              android:label="fragment_location_detail" tools:layout="@layout/fragment_location_detail"/>
 </navigation>
