@@ -8,6 +8,7 @@
               android:label="fragment_app_welcome" tools:layout="@layout/fragment_app_welcome">
         <action android:id="@+id/action_appWelcomeFragment_to_locationListFragment"
                 app:destination="@id/locationListFragment"/>
+        <action android:id="@+id/action_appWelcomeFragment_to_creditsFragment" app:destination="@id/creditsFragment"/>
     </fragment>
     <fragment android:id="@+id/locationDetailFragment"
               android:name="edu.imsa.andyt.smogsafe.fragments.LocationDetailFragment"
@@ -18,4 +19,6 @@
         <action android:id="@+id/action_locationListFragment_to_locationDetailFragment"
                 app:destination="@id/locationDetailFragment"/>
     </fragment>
+    <fragment android:id="@+id/creditsFragment" android:name="edu.imsa.andyt.smogsafe.fragments.CreditsFragment"
+              android:label="fragment_credits" tools:layout="@layout/fragment_credits"/>
 </navigation>
