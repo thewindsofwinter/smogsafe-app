@@ -3,17 +3,21 @@ package edu.imsa.andyt.smogsafe.database
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import edu.imsa.andyt.smogsafe.models.UserLocation
+import edu.imsa.andyt.smogsafe.models.*
 
 class MyViewModel : ViewModel() {
 
-    private val _myNotes: MutableLiveData<MutableList<UserLocation>> = MutableLiveData()
-    val myNotes: LiveData<MutableList<UserLocation>> = _myNotes
+    private val _myNotes: MutableLiveData<MutableList<LocationWrapper>> = MutableLiveData()
+    val myNotes: LiveData<MutableList<LocationWrapper>> = _myNotes
 
     init {
         val notes = mutableListOf(
-            UserLocation("Chicago",40.0,70.0,30),
-            UserLocation("Test", -20.0, 30.0,200)
+            LocationWrapper(
+                Data(
+                    70, listOf(), City(listOf(41.913600, -87.723900), "Shanghai", "https://aqicn.org/city/shanghai"),
+                    Debug("2019-08-08T03:58:57+09:00"), "pm25", Iaqi(), 1437, Time("", "", 1)
+                ), "ok"
+            )
         )
         _myNotes.postValue(notes)
     }
