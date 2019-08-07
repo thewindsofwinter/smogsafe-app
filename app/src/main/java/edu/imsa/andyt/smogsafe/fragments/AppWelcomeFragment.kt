@@ -36,6 +36,10 @@ class AppWelcomeFragment : Fragment() {
         buttonStart.setOnClickListener {
             findNavController().navigate(R.id.action_appWelcomeFragment_to_locationListFragment)
         }
+
+        buttonCredits.setOnClickListener {
+            findNavController().navigate(R.id.action_appWelcomeFragment_to_creditsFragment)
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 
