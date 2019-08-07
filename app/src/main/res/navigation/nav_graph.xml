@@ -5,5 +5,17 @@
             app:startDestination="@id/appWelcomeFragment">
 
     <fragment android:id="@+id/appWelcomeFragment" android:name="edu.imsa.andyt.smogsafe.fragments.AppWelcomeFragment"
-              android:label="fragment_app_welcome" tools:layout="@layout/fragment_app_welcome"/>
+              android:label="fragment_app_welcome" tools:layout="@layout/fragment_app_welcome">
+        <action android:id="@+id/action_appWelcomeFragment_to_locationListFragment"
+                app:destination="@id/locationListFragment"/>
+    </fragment>
+    <fragment android:id="@+id/locationDetailFragment"
+              android:name="edu.imsa.andyt.smogsafe.fragments.LocationDetailFragment"
+              android:label="fragment_location_detail" tools:layout="@layout/fragment_location_detail"/>
+    <fragment android:id="@+id/locationListFragment"
+              android:name="edu.imsa.andyt.smogsafe.fragments.LocationListFragment"
+              android:label="fragment_location_list" tools:layout="@layout/fragment_location_list">
+        <action android:id="@+id/action_locationListFragment_to_locationDetailFragment"
+                app:destination="@id/locationDetailFragment"/>
+    </fragment>
 </navigation>
