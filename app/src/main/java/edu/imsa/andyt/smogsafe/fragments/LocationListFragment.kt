@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -47,13 +46,7 @@ class LocationListFragment : Fragment() {
             this.adapter = adapter
         }
 
-
-        viewModel.myNotes.observe(this, Observer {
-            it?.let { noteList ->
-                Log.d(javaClass.name, "number of notes = ${noteList.size}")
-                adapter.submitList(ArrayList(noteList))
-            }
-        })
+        fetchDataFromServer(adapter, viewModel)
 
     }
 
@@ -61,11 +54,12 @@ class LocationListFragment : Fragment() {
         // Gets our endpoints as defined in the Endpoints interface
         val apiCalls = RetroFitInstance.retrofit
         // Gets the specific call we want
-        val requestList = mutableListOf<Call<LocationWrapper>>()
-        for (userLocation in (model.myNotes.value ?: mutableListOf<LocationWrapper>())) {
+        val requestList = mutableMapOf<Int, Call<LocationWrapper>>()
+        for ((i, userLocation) in (model.myNotes).withIndex()) {
             val request = apiCalls.create(Endpoints::class.java).getCityDataByName(userLocation.data.city.name)
-            requestList.add(request);
+            requestList[i] = request
         }
+        Log.i("REQUEST", "Request list size ${requestList.size}")
 
         // val request = apiCalls.create(Endpoints::class.java).getCityDataByName()
         /* This line is where the actual request is triggered. It requires a Callback.
@@ -77,7 +71,7 @@ class LocationListFragment : Fragment() {
         in the Endpoints interface.
         */
         for (request in requestList) {
-            request.enqueue(object : Callback<LocationWrapper> {
+            request.value.enqueue(object : Callback<LocationWrapper> {
                 // Tell the app what to do if the network call fails for any reason.
                 override fun onFailure(call: Call<LocationWrapper>, t: Throwable) {
                     // Logcat Warn
@@ -91,6 +85,7 @@ class LocationListFragment : Fragment() {
                 // Tell the app what to do if the network call responds.  This does not mean that it
                 // got your data yet.  A 404 from the API is a response.
                 override fun onResponse(call: Call<LocationWrapper>, response: Response<LocationWrapper>) {
+                    Log.i(javaClass.name, "responded!")
                     // Get response code
                     when (response.code()) {
                         // 200 equals a successful GET request that will contain the data requested
@@ -100,8 +95,8 @@ class LocationListFragment : Fragment() {
                             response.body()?.let {
                                 // if not null, send the data to the ListAdapter so that it can be
                                 // shown in the RecyclerView
-                                model.myNotes.value?.add(it)
-                                adapter.submitList(model.myNotes.value)
+                                model.amendData(it, request.key)
+                                adapter.submitList(model.myNotes)
                             }
                         }
                         // If response code is anything but 200, show an error and the error code

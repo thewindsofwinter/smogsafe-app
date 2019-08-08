@@ -21,7 +21,7 @@ import retrofit2.http.Path
  */
 interface Endpoints {
 
-    @GET("feed/{cityName}/?token=demo")
+    @GET("feed/{cityName}/?token=aac52d1efa2ab186c706d961bfe7966c65de316c")
     fun getCityDataByName(@Path("cityName") cityName: String): Call<LocationWrapper>
 
 }
