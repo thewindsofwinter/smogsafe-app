@@ -8,4 +8,13 @@
     <string name="btn_credits">creds</string>
     <string name="data">All data from the World AQI Project.</string>
     <string name="android_logo">android logo</string>
+    <string name="pm25">PM 2.5 Levels</string>
+    <string name="pm10">PM 10 Levels</string>
+    <string name="o3">Ozone Levels</string>
+    <string name="no2">Nitrogen Dioxide Levels</string>
+    <string name="so2">Sulfur Dioxide Levels</string>
+    <string name="pm">Particulate Matter Levels</string>
+    <string name="hc">Hydrocarbon Levels</string>
+    <string name="co">Carbon Monoxide Levels</string>
+    <string name="w">Other Pollutants</string>
 </resources>
