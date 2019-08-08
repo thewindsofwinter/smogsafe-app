@@ -6,4 +6,6 @@
     <string name="smogsafe_logo">SmogSafe Logo</string>
     <string name="btn_start">Start</string>
     <string name="btn_credits">creds</string>
+    <string name="data">All data from the World AQI Project.</string>
+    <string name="android_logo">android logo</string>
 </resources>
