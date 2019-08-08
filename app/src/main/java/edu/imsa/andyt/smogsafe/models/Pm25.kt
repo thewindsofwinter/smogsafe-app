@@ -7,5 +7,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Pm25(
     @Json(name = "v")
-    val v: Int
+    val v: Double
 )

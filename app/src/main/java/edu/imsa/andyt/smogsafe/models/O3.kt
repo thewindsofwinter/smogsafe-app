@@ -7,5 +7,5 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class O3(
     @Json(name = "v")
-    val v: Int
+    val v: Double
 )
